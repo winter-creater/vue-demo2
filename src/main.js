@@ -16,16 +16,17 @@ new Vue({
     {{n}}
     <button @click="add">+1</button>
     <hr>
-    {{array.filter(i=>i%2===0)}}
+
+    {{filter(array)}}
     </div>
     `,
     methods: {
         add() {
             this.n += 1
         },
-        // filterArray() {
-        //     this.array.filter(i => i % 2 === 0)
-        // }
+        filter() {
+            return this.array.filter(i => i % 2 === 0)
+        }
     }
 }).$mount('#app')
 
