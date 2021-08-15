@@ -1,10 +1,18 @@
-// import APP from './App.vue'
-import './demo.vue'
-
 const Vue = window.Vue
+
 Vue.config.productionTip = false
+// debugger
+
+// Vue组件
+// Vue实例
+
+import Demo from './demo.vue'
+console.log(Demo.toString())
 
 new Vue({
+    components: {
+        Winter: Demo
+    },
     data() {
         return {
             n: 0,
@@ -12,9 +20,11 @@ new Vue({
         }
     },
     template: `
-    <div>
+    <div class="red">
     {{n}}
     <button @click="add">+1</button>
+    <br/>
+    <Winter></Winter>
     <hr>
 
     {{filter(array)}}

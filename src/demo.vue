@@ -1,15 +1,26 @@
 <template>
-    <div id="winter"></div>
+    <div class="red">
+        demo
+    </div>
 </template>
 
 <script>
-
-
-export default ({
-   
-})
+export default {
+   data(){
+       return{n:0}
+   },
+   methods:{
+       add(){
+           this.n+=1
+       }
+   }
+}
 </script>
-<style scoped>
 
+
+<style scoped>
+.red{
+    color: red;
+}
 </style>
 
