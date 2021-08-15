@@ -1,6 +1,7 @@
 const Vue = window.Vue
 
 Vue.config.productionTip = false
+
 // debugger
 
 // Vue组件
@@ -9,10 +10,16 @@ Vue.config.productionTip = false
 import Demo from './demo.vue'
 console.log(Demo.toString())
 
+Vue.component('Demo2', {
+    template: `
+    <div>demo22222</div>
+    `
+})
+
 new Vue({
-    components: {
-        Winter: Demo
-    },
+    // components: {
+    //     Winter: Demo
+    // },
     data() {
         return {
             n: 0,
@@ -24,7 +31,7 @@ new Vue({
     {{n}}
     <button @click="add">+1</button>
     <br/>
-    <Winter></Winter>
+  <Demo2/>
     <hr>
 
     {{filter(array)}}
