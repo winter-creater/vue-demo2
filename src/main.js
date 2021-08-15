@@ -25,9 +25,22 @@ new Vue({
     // component组件引入方式3
     components: {
         Winter: {
+            data() {
+                return { y: 1 }
+            },
             template: `
-    <div>Winter</div>
-    `
+            <div>
+            <hr>
+          <p>  组件引入练习</p>
+    <span>{{y}}</span>
+    <button @click="add">+1</button>
+    </div>
+    `,
+            methods: {
+                add() {
+                    this.y += 1
+                }
+            }
         }
     },
     data() {
