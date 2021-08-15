@@ -9,7 +9,7 @@ Vue.config.productionTip = false
 
 import Demo from './demo.vue'
 console.log(Demo.toString())
-
+// component组件引入方式2
 Vue.component('Demo2', {
     template: `
     <div>demo22222</div>
@@ -17,9 +17,19 @@ Vue.component('Demo2', {
 })
 
 new Vue({
+    //组件引入方式1
     // components: {
     //     Winter: Demo
     // },
+
+    // component组件引入方式3
+    components: {
+        Winter: {
+            template: `
+    <div>Winter</div>
+    `
+        }
+    },
     data() {
         return {
             n: 0,
@@ -32,6 +42,7 @@ new Vue({
     <button @click="add">+1</button>
     <br/>
   <Demo2/>
+  <Winter/>
     <hr>
 
     {{filter(array)}}
