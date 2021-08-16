@@ -1,9 +1,9 @@
 <template>
-    <div class="red">
+  <div class="red">
         这里是demo的内部
         
-        {{message}}
-    </div>
+        {{this.message}}
+    </div>  
 </template>
 
 <script>
