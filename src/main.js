@@ -1,73 +1,69 @@
+
 const Vue = window.Vue
-
 Vue.config.productionTip = false
-
-// debugger
-
-// Vue组件
-// Vue实例
-
-import Demo from './demo.vue'
-console.log(Demo.toString())
-// component组件引入方式2
+// 生命周期
 Vue.component('Demo2', {
+    data() { return { n: 0 } },
     template: `
-    <div>demo22222</div>
-    `
-})
-
-new Vue({
-    //组件引入方式1
-    // components: {
-    //     Winter: Demo
-    // },
-
-    // component组件引入方式3
-    components: {
-        Winter: {
-            data() {
-                return { y: 1 }
-            },
-            template: `
-            <div>
-            <hr>
-          <p>  组件引入练习</p>
-    <span>{{y}}</span>
-    <button @click="add">+1</button>
-    </div>
-    `,
-            methods: {
-                add() {
-                    this.y += 1
-                }
-            }
-        }
-    },
-    data() {
-        return {
-            n: 0,
-            array: [1, 2, 3, 4, 5, 6, 7, 8]
-        }
-    },
-    template: `
-    <div class="red">
+    <div>
     {{n}}
     <button @click="add">+1</button>
     <br/>
-  <Demo2/>
-  <Winter/>
     <hr>
-
-    {{filter(array)}}
     </div>
     `,
+    created() {
+        // debugger
+        console.log('这玩意出现在内存中,没有出现在页面中');
+    },
+    mounted() {
+        // debugger
+        console.log('这玩意出现在页面中');
+    },
+    updated() {
+        console.log('更新了');
+        console.log(this.n);
+    },
+    unmounted() {
+        console.log('消亡了');
+    },
     methods: {
         add() {
             this.n += 1
-        },
-        filter() {
-            return this.array.filter(i => i % 2 === 0)
         }
     }
+})
+
+new Vue({
+
+    data() {
+        return {
+            visible: true
+        }
+    },
+
+    template: `
+    <div>
+    <button @click="toggle">toggle</button>
+    <Demo2 v-if="visible===true"/>
+    </div>    
+    `,
+
+    methods: {
+        toggle() {
+            this.visible = !this.visible
+        }
+    }
+
+
+
+
+
+
+
+
+    // 用render可以代替components
+    // render: h => h(Destroyed)
+
 }).$mount('#app')
 
