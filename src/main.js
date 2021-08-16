@@ -6,10 +6,9 @@ Vue.component('Demo2', {
     data() { return { n: 0 } },
     template: `
     <div>
+    <hr>
     {{n}}
     <button @click="add">+1</button>
-    <br/>
-    <hr>
     </div>
     `,
     created() {
