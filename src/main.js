@@ -1,63 +1,36 @@
-// {
-//     姓: "高",
-//     名: "圆圆",
-//     age: 18
-// };
+// let data0 = {
+//     n: 0
+// }
 
+//需求1：用Object.defineProperty定义 n
+let data1 = {}
 
-//需求1：得出姓名的值
-let obj2 = {
-    姓: "高",
-    名: "圆圆",
-    姓名() {
-        return this.姓 + this.名;
+Object.defineProperty(data1, 'n', {
+    value: 0
+})
 
-    },
-    age: 18
-};
-console.log("需求1" + obj2.姓名())
+console.log(`需求1:${data1.n}`);
 
-//需求2：姓名不要括号也可以得出值 
-// getter
-let obj3 = {
-    姓: "高",
-    名: "圆圆",
-    get 姓名() {
-        return this.姓 + this.名;
+// 需求2： n不能小于0
+// 即data2.n=-1无效，但data2.n=1有效
 
-    },
-    age: 18
-};
-console.log("需求2" + obj3.姓名)
-
-// 需求3：姓名可以被写
-// getter && setter
-let obj4 = {
-    姓: "高",
-    名: "圆圆",
-    get 姓名() {
-        return this.姓 + this.名;
-
-    },
-    set 姓名(xxx) {
-        this.姓 = xxx[0],
-            this.名 = xxx.substring(1)
-    },
-    age: 18
-};
-obj4.姓名 = "刘诗诗"
-console.log("需求3" + `姓${obj4.姓},名${obj4.名}`)
-obj4.姓名 = "刘一亿"
-console.log("需求3" + `姓${obj4.姓},名${obj4.名}`)
-
-// Object.defineProperty定义好对象后，可以额外加getter、setter
-var _xxx = 0
-Object.defineProperty(obj4, 'xxx', {
+let data2 = {}
+data2._n = 0 //_n用来偷偷存储n的值
+Object.defineProperty(data2, 'n', {
     get() {
-        return _xxx
-        // 定义的xxx不存在，所以不能 return xxx，会死循环
+        return this._n
     },
     set(value) {
-        _xxx = value
+        if (value < 0) { return } else {
+            this._n = value
+        }
     }
 })
+
+console.log(`需求2：${data2.n}`);
+data2.n = -1
+console.log(`需求2：${data2.n} 设置为-1失败`);
+data2.n = 1
+console.log(`需求2：${data2.n} 设置为${data2.n}成功`);
+data2.n = 2
+console.log(`需求2：${data2.n} 设置为${data2.n}成功`);
