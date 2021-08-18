@@ -16,8 +16,14 @@ new Vue({
         }
     },
     computed: {
-        displayName() {
-            return this.user.nickname || this.user.email || this.user.phone
+        displayName: {
+            get() {
+                return this.user.nickname || this.user.email || this.user.phone
+            },
+            set(value) {
+                console.log(value);
+                this.user.nickname = value
+            }
         }
     },
     // 优先展示用户名，然后才是邮箱，再到手机号
@@ -28,7 +34,13 @@ new Vue({
     <div>
     {{displayName}}
     </div>
+    <button @click="add">set name</button>
     </div>
     
-    `
+    `,
+    methods: {
+        add() {
+            this.displayName = "圆圆"
+        }
+    }
 }).$mount('#app')
