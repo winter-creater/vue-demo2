@@ -15,11 +15,20 @@ new Vue({
 
         }
     },
+    computed: {
+        displayName() {
+            return this.user.nickname || this.user.email || this.user.phone
+        }
+    },
     // 优先展示用户名，然后才是邮箱，再到手机号
     // 问题：每次需要展示用户名，都要重写一遍div
     template: `
     <div>
-    {{user.nickname||user.email||user.phone}}
+    {{displayName}}
+    <div>
+    {{displayName}}
     </div>
+    </div>
+    
     `
 }).$mount('#app')
