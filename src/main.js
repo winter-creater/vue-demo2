@@ -31,11 +31,7 @@ new Vue({
     <button>全部</button><button>男</button><button>女</button>
     </div>
     <ul>
-    <li>{{users[0].name}}-{{users[0].gender}}</li>
-    <li>{{users[1].name}}-{{users[1].gender}}</li>
-    <li>{{users[2].name}}-{{users[2].gender}}</li>
-    <li>{{users[3].name}}-{{users[3].gender}}</li>
-   
+    <li v-for="u in users">{{u.name}}-{{u.gender}}</li>
      </ul>
     </div>
     `,
