@@ -1,46 +1,43 @@
-// computed 属性
+// computed属性   列表展示
 
 const Vue = window.Vue
 
 Vue.config.productionTip = false
 
+let id = 0
+const createUser = (name, gender) => {
+    id += 1
+    return { id: id, name: name, gender: gender }
+
+}
+
 new Vue({
     data() {
         return {
-            user: {
-                email: "1264879929@qq.com",
-                nickname: "团仔",
-                phone: "19140638878"
-            }
+            users: [
+                createUser('方方', '男'),
+                createUser('圆圆', '女'),
+                createUser('小方', '男'),
+                createUser('圆方', '女')
+            ]
 
         }
+
+
     },
-    computed: {
-        displayName: {
-            get() {
-                return this.user.nickname || this.user.email || this.user.phone
-            },
-            set(value) {
-                console.log(value);
-                this.user.nickname = value
-            }
-        }
-    },
-    // 优先展示用户名，然后才是邮箱，再到手机号
-    // 问题：每次需要展示用户名，都要重写一遍div
     template: `
     <div>
-    {{displayName}}
     <div>
-    {{displayName}}
+    <button>全部</button><button>男</button><button>女</button>
     </div>
-    <button @click="add">set name</button>
+    <ul>
+    <li>{{users[0].name}}-{{users[0].gender}}</li>
+    <li>{{users[1].name}}-{{users[1].gender}}</li>
+    <li>{{users[2].name}}-{{users[2].gender}}</li>
+    <li>{{users[3].name}}-{{users[3].gender}}</li>
+   
+     </ul>
     </div>
-    
     `,
-    methods: {
-        add() {
-            this.displayName = "圆圆"
-        }
-    }
+
 }).$mount('#app')
