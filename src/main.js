@@ -19,21 +19,44 @@ new Vue({
                 createUser('圆圆', '女'),
                 createUser('小方', '男'),
                 createUser('圆方', '女')
-            ]
+            ],
+            displayUsers: []
+
+        };
+    },
+    created() {
+
+        this.displayUsers = this.users;
+        // console.log(this.displayUsers === this.users);
+        // console.log(this.displayUsers);
+    },
+    methods: {
+        showAll() {
+            console.log('all');
+            this.displayUsers = this.users;
+            console.log(this.displayUsers);
+        },
+        showMale() {
+            console.log("nan");
+            this.displayUsers = this.users.filter(u => u.gender === "男");
+            console.log(this.displayUsers);
+        },
+        showFemale() {
+            console.log('nv');
+            this.displayUsers = this.users.filter(u => u.gender === "女");
 
         }
-
-
     },
     template: `
     <div>
     <div>
-    <button>全部</button><button>男</button><button>女</button>
+    <button  @click="showAll">全部</button>
+    <button  @click="showMale">男</button>
+    <button  @click="showFemale">女</button>
     </div>
     <ul>
-    <li v-for="u in users">{{u.name}}-{{u.gender}}</li>
+    <li v-for="(u,index) in displayUsers" :key="index">{{u.name}}-{{u.gender}}</li>
      </ul>
     </div>
-    `,
-
+    `
 }).$mount('#app')
