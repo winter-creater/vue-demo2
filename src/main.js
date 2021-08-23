@@ -20,30 +20,48 @@ new Vue({
                 createUser('小方', '男'),
                 createUser('圆方', '女')
             ],
-            displayUsers: []
-
+            gender: ''
         };
     },
-    created() {
+    computed: {
+        // 能运行，不报错，有下画线，不能提交
+        // displayUsers() {
+        //     const { users, gender } = this
+        //     if (gender === "") {
+        //         return users
+        //     } else if (gender === "male") {
+        //         return users.filter(u => u.gender === "男")
+        //     } else if (gender === "female") {
+        //         return users.filter(u => u.gender === "女")
+        //     }
 
-        this.displayUsers = this.users;
-        // console.log(this.displayUsers === this.users);
-        // console.log(this.displayUsers);
+        // }
+
     },
+    // created() {
+
+    //     // this.displayUsers = this.users;
+    //     // console.log(this.displayUsers === this.users);
+    //     // console.log(this.displayUsers);
+    // },
     methods: {
         showAll() {
-            console.log('all');
-            this.displayUsers = this.users;
-            console.log(this.displayUsers);
+            this.gender = ""
+            // console.log('all');
+            // this.displayUsers = this.users;
+            // console.log(this.displayUsers);
         },
         showMale() {
-            console.log("nan");
-            this.displayUsers = this.users.filter(u => u.gender === "男");
-            console.log(this.displayUsers);
+            this.gender = "male"
+            // console.log("nan");
+            // this.displayUsers = this.users.filter(u => u.gender === "男");
+            // console.log(this.displayUsers);
         },
         showFemale() {
-            console.log('nv');
-            this.displayUsers = this.users.filter(u => u.gender === "女");
+            this.gender = "female"
+
+            // console.log('nv');
+            // this.displayUsers = this.users.filter(u => u.gender === "女");
 
         }
     },
