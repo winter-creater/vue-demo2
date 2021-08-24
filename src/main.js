@@ -34,12 +34,13 @@ new Vue({
 
         },
         'user.nickname': {
+            // 处理change
             handler() {
                 console.log('nickname变了');
                 const { user: { email, nickname, phone } } = this
                 this.displayName = nickname || email || phone
             },
-            immediate: true
+            immediate: true //第一次也运行
 
         },
 
