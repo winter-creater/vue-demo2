@@ -1,3 +1,4 @@
+//  watch 模拟computed属性的例子
 const Vue = window.Vue
 
 Vue.config.productionTip = false
@@ -5,51 +6,41 @@ Vue.config.productionTip = false
 new Vue({
     data() {
         return {
-            n: 0,
-            history: [],
-            inUndoMode: false
+            user: {
+                email: "winter@qq.com",
+                nickname: "winter",
+                phone: "13438456321"
+            },
+            displayName: ""
         }
     },
     watch: {
-        n(newValue, oldValue) {
-            console.log(`${this.inUndoMode}`);
-            if (!this.inUndoMode) {
-                this.history.push({ from: oldValue, to: newValue })
-            }
+        'user.email'() {
+            const { user: { email, nickname, phone } } = this
+            this.displayName = nickname || email || phone
+        },
+        'user.phone'() {
+            const { user: { email, nickname, phone } } = this
+            this.displayName = nickname || email || phone
+        },
+        'user.nickname'() {
+            const { user: { email, nickname, phone } } = this
+            this.displayName = nickname || email || phone
         }
+
+
     },
+    // displayName不展示，watch第一次的值不监听，从无变成有，是出生的部分，不是change
     template: `
     <div>
-    {{n}}
-    <hr/>
-    <button @click="add1">+1</button>
-    <button @click="add2">+2</button>
-    <button @click="minus1">-1</button>
-    <button @click="minus2">-2</button>
-    <hr/>
-    <button @click="undo">撤销</button>
-    <hr/>
-    {{history}}
+    {{displayName}}
+    <button @click="user.nickname=undefined">remove nickname</button>
+    
     </div>
     `,
     methods: {
-        add1() { this.n += 1 },
-        add2() { this.n += 2 },
-        minus1() { this.n -= 1 },
-        minus2() { this.n -= 2 },
-        undo() {
-            const last = this.history.pop();
-            console.log(last);
-            const old = last.from
-            this.inUndoMode = true
-            this.n = old //watch是异步的
-            // this.inUndoMode = false //顺序不对，执行完了，才去执行watch
-            // 应先执行watch，再执行this.inUndoMode = false
-            // $nextTick(()=>{},time) Vue的计时器，类似于setTimeout((=>{},time),也是异步
-            this.$nextTick(() => {
-                this.inUndoMode = false
-            }, 0)
-        }
+
     }
 
-}).$mount('#app')
+
+}).$mount("#app")
