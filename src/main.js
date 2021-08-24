@@ -15,18 +15,33 @@ new Vue({
         }
     },
     watch: {
-        'user.email'() {
-            const { user: { email, nickname, phone } } = this
-            this.displayName = nickname || email || phone
+        'user.email': {
+            handler() {
+                console.log('email变了');
+                const { user: { email, nickname, phone } } = this
+                this.displayName = nickname || email || phone
+            },
+            immediate: true
+
         },
-        'user.phone'() {
-            const { user: { email, nickname, phone } } = this
-            this.displayName = nickname || email || phone
+        'user.phone': {
+            handler() {
+                console.log('phone变了');
+                const { user: { email, nickname, phone } } = this
+                this.displayName = nickname || email || phone
+            },
+            immediate: true
+
         },
-        'user.nickname'() {
-            const { user: { email, nickname, phone } } = this
-            this.displayName = nickname || email || phone
-        }
+        'user.nickname': {
+            handler() {
+                console.log('nickname变了');
+                const { user: { email, nickname, phone } } = this
+                this.displayName = nickname || email || phone
+            },
+            immediate: true
+
+        },
 
 
     },
