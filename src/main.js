@@ -23,8 +23,11 @@ new Vue({
             console.log('n变了');
             console.log(this.n);
         },
-        obj() {
-            console.log('obj变了');
+        obj: {
+            handler() {
+                console.log('obj变了');
+            },
+            deep: true
         },
         "obj.a"() {
             console.log('obj.a变了');
